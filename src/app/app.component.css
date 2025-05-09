@@ -1,0 +1,60 @@
+/* Container */
+.quiz-wrapper {
+  /* max-width: 800px; */
+  height: 100vh;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #f8fdfb; /* soft pastel background */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Header */
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e3f6f5;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #bce3da;
+}
+
+/* Title */
+.quiz-title {
+  font-size: 28px;
+  color: #4fa3a5;
+  margin: 0;
+}
+
+/* CTA Button Wrapper */
+.quiz-cta {
+  display: flex;
+  align-items: center;
+}
+
+/* Start Button */
+.btn-start {
+  background-color: #a8d0e6;
+  color: #223a5e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-start:hover {
+  background-color: #89b3d1;
+}
+
+/* Router outlet content area */
+.quiz-content {
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+}

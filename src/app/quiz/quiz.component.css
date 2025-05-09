@@ -1,0 +1,165 @@
+.quiz-container {
+  /* max-width: 900px; */
+  margin: 10px auto;
+  background-color: #f8fdfb;
+  padding: 25px;
+  border-radius: 15px;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+}
+
+.question-box {
+  background-color: #e6f7f6;
+  border: 2px solid #a4d4c8;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.question-title {
+  text-align: center;
+  font-weight: bold;
+  color: #4fa3a5;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.question-text {
+  display: block;
+  font-size: 18px;
+  color: #2f2f2f;
+  margin-bottom: 20px;
+}
+
+.options-box {
+  background-color: #fef6e4;
+  border: 1px solid #f8dcb8;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.options-label {
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.option-item {
+  margin-bottom: 10px;
+}
+
+.option-item input[type="radio"] {
+  margin-right: 8px;
+}
+
+.option-item label {
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-align-right {
+  text-align: right;
+  margin-top: 15px;
+}
+
+.btn-show-answer {
+  background-color: #ffd59a;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #4a3d20;
+  font-weight: 600;
+}
+
+.btn-show-answer:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.answer-box {
+  margin-top: 10px;
+}
+
+.answer-correct,
+.answer-wrong {
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.answer-correct {
+  background-color: #d0f4de;
+  color: #2d6a4f;
+}
+
+.answer-wrong {
+  background-color: #fddede;
+  color: #b00020;
+}
+
+.answer-text {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.quiz-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn-previous,
+.btn-next {
+  background-color: #a8d0e6;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #223a5e;
+  cursor: pointer;
+}
+
+.btn-previous:disabled,
+.btn-next:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.quiz-result {
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #f8fdfb;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.result-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #0d6efd; /* Bootstrap's primary color */
+  margin-bottom: 20px;
+}
+
+.result-score,
+.result-total {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.result-score strong,
+.result-total strong {
+  font-weight: 600;
+}
+
+.text-success {
+  color: #198754; /* Bootstrap's success green */
+}
+
+.text-danger {
+  color: #dc3545; /* Bootstrap's danger red */
+}

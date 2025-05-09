@@ -1,0 +1,92 @@
+<div class="quiz-container">
+  <div class="question-box">
+    <h4 class="question-title">Question {{ questions?.id }}</h4>
+    <span class="question-text">{{ questions?.question }}</span>
+
+    <div class="options-box">
+      <p class="options-label">Options:</p>
+      <div
+        class="option-item"
+        *ngFor="let option of questions?.options; let i = index"
+      >
+        <input
+          type="radio"
+          [id]="'option-' + i"
+          [value]="option"
+          [(ngModel)]="selectedOption"
+          [disabled]="showans"
+          [name]="'questions-' + questions?.id"
+        />
+        <label [for]="'option-' + i">{{ option }}</label>
+      </div>
+
+      <div class="btn-align-right">
+        <button
+          [disabled]="!selectedOption"
+          class="btn-show-answer"
+          (click)="showanswer()"
+        >
+          Show Answer
+        </button>
+      </div>
+
+      <div *ngIf="showans === true" class="answer-box">
+        <p
+          *ngIf="selectedOption && selectedOption === questions?.correctAnswer"
+          class="answer-correct"
+        >
+          ✅ Correct!
+        </p>
+        <p
+          *ngIf="selectedOption && selectedOption !== questions?.correctAnswer"
+          class="answer-wrong"
+        >
+          ❌ Wrong Answer
+        </p>
+        <p class="answer-text">
+          Answer:
+          <em
+            ><b>{{ questions?.correctAnswer }}</b></em
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-navigation">
+    <button
+      *ngIf="isQuizCompleted"
+      (click)="showPrevious()"
+      class="btn-previous"
+    >
+      Previous
+    </button>
+    <button
+      [disabled]="!selectedOption"
+      (click)="
+        isQuizCompleted
+          ? restartQuiz()
+          : isLastQuestion()
+          ? submitQuiz()
+          : showNext()
+      "
+      class="btn-next"
+    >
+      {{ isQuizCompleted ? "Restart" : isLastQuestion() ? "Submit" : "Next" }}
+    </button>
+  </div>
+
+  <div *ngIf="isQuizCompleted" class="quiz-result">
+    <p class="result-title">🎉 Quiz Completed!</p>
+    <p class="result-score">
+      Your Score = <strong>{{ score }}</strong>
+    </p>
+    <p class="result-total">
+      Total Questions = <strong>{{ totalquestions }}</strong> <br />
+      Correct answers =
+      <strong class="text-success">{{ correctAnswer }}</strong> <br />
+      Wrong answers =
+      <strong class="text-danger">{{ incorrectAnswer }}</strong> <br />
+    </p>
+  </div>
+</div>
