@@ -45,12 +45,9 @@ export class QuizComponent implements OnInit {
           this.minutes = 0;
           console.log('minutes in hours', this.minutes);
           console.log('hours : ', this.hours);
-
-          if (this.minutes === 60) {
-            this.isQuizCompleted = true;
-            this.submitQuiz();
-            clearInterval(timer);
-          }
+          this.isQuizCompleted = true;
+          this.submitQuiz();
+          clearInterval(timer);
         }
       }
       if (this.isQuizCompleted === true) {
