@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <!-- Instructions Card -->
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Quiz Instructions</h3>
+      <ul class="list-unstyled">
+        <li>⏳ The quiz is 1 minute long.</li>
+        <li>⏱️ You have 15 seconds per question.</li>
+        <li>⚡ After 1 minute, the quiz will be automatically submitted.</li>
+        <li>❌ You cannot go back to previous questions.</li>
+      </ul>
+
+      <div class="form-check mb-2 mt-4">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="agreeCheckbox"
+          #ischeked
+          (click)="ischecked = !ischecked"
+        />
+        <label class="form-check-label" for="agreeCheckbox"
+          >I have read and agree to the instructions.</label
+        >
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button
+          class="btn btn-outline-primary"
+          id="startButton"
+          [disabled]="!ischecked"
+          routerLink="/startQuiz"
+        >
+          Start Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,9 @@ export class QuizComponent implements OnInit {
   selectedOption = '';
   index = 0;
   score = 0;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
   totalquestions = 0;
   correctAnswer = 0;
   incorrectAnswer = 0;
@@ -22,6 +25,39 @@ export class QuizComponent implements OnInit {
   showans = false;
   allquestions: Question[] = [];
   ngOnInit(): void {
+    const timer = setInterval(() => {
+      this.seconds++;
+      console.log(this.seconds);
+      if (this.seconds % 15 === 0) {
+        if (this.index < this.totalquestions - 1) {
+          this.showNext();
+        } else {
+          this.submitQuiz();
+        }
+      }
+      if (this.seconds === 60) {
+        this.minutes++;
+        this.seconds = 0;
+        alert('Time is up');
+        console.log('minutes after seconds ', this.minutes);
+        if (this.minutes === 60) {
+          this.hours++;
+          this.minutes = 0;
+          console.log('minutes in hours', this.minutes);
+          console.log('hours : ', this.hours);
+
+          if (this.minutes === 60) {
+            this.isQuizCompleted = true;
+            this.submitQuiz();
+            clearInterval(timer);
+          }
+        }
+      }
+      if (this.isQuizCompleted === true) {
+        clearInterval(timer);
+      }
+    }, 1000);
+
     this.service.getQuestions().subscribe((data) => {
       console.log(data);
       this.allquestions = data;
@@ -43,41 +79,15 @@ export class QuizComponent implements OnInit {
     }
     if (selectedOption !== this.questions?.correctAnswer) {
       this.incorrectAnswer++;
+      console.log(this.incorrectAnswer);
     }
     console.log('score : ', this.score);
   }
 
-  // showPrevious() {
-  //   console.log('previous clicked');
-  //   console.log(this.index - 1);
-
-  //   this.service.getQuestionById(this.index).subscribe({
-  //     next: (data) => {
-  //       this.questions = data;
-  //       this.index--;
-  //       if (this.isAnswered) {
-  //         const element = document.getElementById('quizop');
-  //         element?.setAttribute('disabled', 'true');
-  //       }
-  //       const savedAnswer = this.selectedAnswers[this.index ];
-  //       if (savedAnswer) {
-  //         this.selectedOption = savedAnswer;
-  //         this.isAnswered = true;
-  //       }
-  //       this.showanswer();
-
-  //       console.log(this.questions);
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //       alert('No more questions available');
-  //     },
-  //   });
-  // }
   showPrevious() {
     if (this.index <= 0) return;
 
-    this.index--; // Decrement first
+    this.index--;
     this.service.getQuestionById(this.index + 1).subscribe({
       next: (data) => {
         this.questions = data;
@@ -103,15 +113,13 @@ export class QuizComponent implements OnInit {
   showNext() {
     console.log('next clicked');
     console.log(this.index + 1);
-
     this.quizscore(this.selectedOption);
-
-    this.selectedOption = '';
-    this.isAnswered = false;
     this.showans = false;
 
     if (this.index === this.totalquestions - 1) {
       this.isQuizCompleted = true;
+      this.submitQuiz();
+      this.isAnswered = false;
       return;
     }
 
@@ -133,9 +141,16 @@ export class QuizComponent implements OnInit {
     return this.index === this.totalquestions - 1;
   }
   submitQuiz() {
-    this.quizscore(this.selectedOption);
+    if (!this.isAnswered) {
+      this.quizscore(this.selectedOption);
+    }
     this.isQuizCompleted = true;
+    // const element = document.getElementById('btn-next');
+    // if (element && this.isQuizCompleted === true) {
+    //   element.setAttribute('disabled', 'false');
+    // }
   }
+
   restartQuiz() {
     window.location.reload();
   }

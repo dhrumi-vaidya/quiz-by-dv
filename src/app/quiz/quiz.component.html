@@ -1,4 +1,8 @@
 <div class="quiz-container">
+  <h2 class="d-flex justify-content-end">
+    {{ hours }} <sub>h</sub> : {{ minutes }} <sub>m</sub>: {{ seconds }}
+    <sub>s</sub>
+  </h2>
   <div class="question-box">
     <h4 class="question-title">Question {{ questions?.id }}</h4>
     <span class="question-text">{{ questions?.question }}</span>
@@ -62,15 +66,8 @@
       Previous
     </button>
     <button
-      [disabled]="!selectedOption"
-      (click)="
-        isQuizCompleted
-          ? restartQuiz()
-          : isLastQuestion()
-          ? submitQuiz()
-          : showNext()
-      "
       class="btn-next"
+      (click)="isQuizCompleted ? restartQuiz() : showNext()"
     >
       {{ isQuizCompleted ? "Restart" : isLastQuestion() ? "Submit" : "Next" }}
     </button>
